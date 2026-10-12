@@ -2,7 +2,7 @@
 <html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Jester — Portfolio</title>
+    <title>Jester - 666</title>
     <link rel="icon" type="image/png" href="sigil.png">
     <meta name="description" content="Jester — indie game developer, Roblox scripter, explorer.">
 
@@ -1958,6 +1958,7 @@
     </div>
 
     <audio id="bgm" src="rain1.mp3" loop preload="auto"></audio>
+    <audio id="clickSfx" src="click.wav" preload="auto"></audio>
 
     <div class="vol" id="volPill">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -2153,6 +2154,15 @@
                 setTimeout(function () { splash.remove(); }, 900);
             });
             vol.addEventListener('input', function () { bgm.volume = vol.value / 100; });
+
+            /* click sound on anything clickable */
+            const clickSfx = document.getElementById('clickSfx');
+            clickSfx.volume = .3;
+            document.addEventListener('click', function (e) {
+                if (e.target.closest('a, button, input[type=range], .dot, .labels span')) {
+                    try { clickSfx.currentTime = 0; clickSfx.play().catch(function () {}); } catch (err) {}
+                }
+            });
 
             const track = document.getElementById('marqueeTrack');
             if (track) {
